@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Cat Facts</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="initial_fact">Cats with long, lean bodies are more likely to be outgoing, and more protective and vocal than those with a stocky build.</string>
+    <string name="show_fact_button">Show Another Cat Fact</string>
+    <string name="dyk_label">Did you know?</string>
+    <string name="off_text">OFFLINE</string>
+
+</resources>
