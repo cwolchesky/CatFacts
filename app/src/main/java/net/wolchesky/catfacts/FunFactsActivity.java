@@ -51,7 +51,7 @@ public class FunFactsActivity extends Activity {
         View.OnClickListener listener = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String fact = null;
+                String fact;
                 if (mFactJSON == null) {
                     fact = mFactBook.getFact();
                 } else {
@@ -59,7 +59,7 @@ public class FunFactsActivity extends Activity {
                         JSONArray jsonArray = mFactJSON.getJSONArray("facts");
                         fact = jsonArray.getString(0);
                     } catch (JSONException e) {
-                        Log.e(TAG, "Exception caught: ", e);
+                        //Log.e(TAG, "Exception caught: ", e);
                         fact = mFactBook.getFact();
                     }
 
@@ -102,7 +102,7 @@ public class FunFactsActivity extends Activity {
         @Override
         protected JSONObject doInBackground(Object... params) {
             JSONObject jsonResponse = null;
-            int responseCode = -1;
+            int responseCode;
 
             try {
                 URL requestUrl = new URL("http://catfacts-api.appspot.com/api/facts");
@@ -110,7 +110,9 @@ public class FunFactsActivity extends Activity {
                 connection.setRequestProperty("Accept-Encoding", "identity");
                 connection.connect();
                 responseCode = connection.getResponseCode();
-                if(responseCode == HttpURLConnection.HTTP_OK) {
+                if (responseCode != HttpURLConnection.HTTP_OK) {
+                    //Log.e(TAG, "Status Code: " + responseCode);
+                } else {
                     InputStream stream = connection.getInputStream();
                     Reader reader = new InputStreamReader(stream);
                     int contentLength = connection.getContentLength();
@@ -124,15 +126,13 @@ public class FunFactsActivity extends Activity {
                         jsonResponse = new JSONObject(jsonData);
                     }
 
-                    Log.d(TAG, jsonResponse.toString(2));
+                    //Log.d(TAG, jsonResponse.toString(2));
                     connection.disconnect();
-                } else {
-                    Log.e(TAG, "Status Code: " + responseCode);
                 }
 
             }
             catch (Exception e) {
-                Log.e(TAG, "Exception: ", e);
+                //Log.e(TAG, "Exception: ", e);
             }
 
 
@@ -155,7 +155,7 @@ public class FunFactsActivity extends Activity {
 
                 buffer.flush();
             } catch (IOException e) {
-                Log.e(TAG, "Exception caught: ", e);
+                //Log.e(TAG, "Exception caught: ", e);
             }
 
             return buffer.toString();

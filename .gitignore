@@ -39,3 +39,4 @@ Thumbs.db
 
 # OSX files
 .DS_Store
+app/proguard-rules.pro
